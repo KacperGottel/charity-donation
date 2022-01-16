@@ -34,7 +34,6 @@ public class DonationController {
 
     @PostMapping(value = "/form")
     public String donationProcess(@Valid Donation donation, BindingResult bindingResult, Model model) {
-        log.error(donation.toString());
         if (bindingResult.hasErrors()) {
             model.addAttribute("donation", new Donation());
             model.addAttribute("errors", bindingResult.getModel());
@@ -45,4 +44,5 @@ public class DonationController {
         donationRepository.save(donation);
         return "confirmation";
     }
+
 }

@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.Category.Category;
 import pl.coderslab.charity.Institution.Institution;
+import pl.coderslab.charity.User.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -40,6 +41,9 @@ public class Donation {
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime pickUpTime;
     private String pickUpComment;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
 
 

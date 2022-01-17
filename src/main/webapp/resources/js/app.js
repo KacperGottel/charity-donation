@@ -179,6 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     const catRadioIn = document.getElementsByClassName("catRadioIn");
+    const catRadioIn2 = document.querySelectorAll(".catRadioIn:checked ~ .description > .title");
+    console.log(catRadioIn2);
     for (let catRadioInElement of catRadioIn) {
         catRadioInElement.addEventListener("click", function () {
             let cartegory = catRadioInElement.nextElementSibling.nextElementSibling.firstElementChild.innerHTML;

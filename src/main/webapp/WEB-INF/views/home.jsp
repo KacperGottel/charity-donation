@@ -66,12 +66,13 @@
 
 <section id="help"  class="help">
     <h2>Komu pomagamy?</h2>
-
+    <div>
+        <a href="/institution/list" class="btn btn--large">Zobacz wszystkie</a>
+    </div>
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
         <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują.</p>
-
         <ul class="help--slides-items">
             <li>
                 <c:forEach items="${institutions}" var="i" begin="0" step="1" end="${institutions.size()/2-1}">
@@ -90,10 +91,8 @@
                     </div>
                 </c:forEach>
             </li>
-
         </ul>
     </div>
-
 </section>
 
 <%@ include file="/resources/fragment/footer.jsp" %>

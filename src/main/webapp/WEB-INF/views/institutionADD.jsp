@@ -22,8 +22,8 @@
                     Hi! <sec:authentication property="principal.username"/>
                 </sec:authorize>
                 <ul class="dropdown">
-                    <li><a href="/user/${currentuser.user.id}/dashboard">Profil</a></li>
-                    <li><a href="/user/${currentuser.user.id}/collection">Moje zbiórki</a></li>
+                    <li><a href="/user/dashboard">Profil</a></li>
+                    <li><a href="/user/collection">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
             </li>

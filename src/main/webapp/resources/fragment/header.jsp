@@ -17,10 +17,7 @@
 <body>
 <header class="header--main-page">
     <nav class="container container--70">
-        <ul class="nav--actions"><li class="btn btn--small btn--without-border">
-            <sec:authorize access="isAuthenticated()">
-            Hi! <sec:authentication property="principal.username" />
-            </sec:authorize></li>
+        <ul class="nav--actions">
             <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
             <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
         </ul>
@@ -32,6 +29,7 @@
             <li><a href="#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
             <li><a href="/form" class="btn btn--without-border">Przekaż dary</a></li>
             <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="/user/dashboard" class="btn btn--without-border">Mój profil</a></li>
         </ul>
     </nav>
 

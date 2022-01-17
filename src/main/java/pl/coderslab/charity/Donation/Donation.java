@@ -1,6 +1,7 @@
 package pl.coderslab.charity.Donation;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.Category.Category;
 import pl.coderslab.charity.Institution.Institution;
@@ -11,9 +12,13 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class Donation {
 
     @Id
@@ -23,6 +28,7 @@ public class Donation {
     private Integer quantity;
     @NotNull
     @ManyToMany
+    @ToString.Exclude
     private List<Category> categories;
     @NotNull
     @ManyToOne
@@ -43,7 +49,21 @@ public class Donation {
     private String pickUpComment;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private User user;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Donation donation = (Donation) o;
+        return id != null && Objects.equals(id, donation.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
 
 

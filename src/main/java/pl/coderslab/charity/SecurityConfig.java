@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login", "/register","/").permitAll()
                 .antMatchers("/institution/**").hasAnyRole("USER", "ADMIN")
                 .and()
-                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/")
+                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/user/dashboard")
                 .and().rememberMe().tokenValiditySeconds(36000).tokenRepository(persistentTokenRepository()).userDetailsService(this.customUserDetailsService())
                 .and()
                 .logout().deleteCookies("remember-me").logoutSuccessUrl("/");

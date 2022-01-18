@@ -35,3 +35,8 @@ create table persistent_logins
     last_used timestamp   not null
 );
 
+INSERT INTO `charity-donation`.status (id, delivery_date, is_delivered, is_picked_up, donation_id) VALUES (1, '2022-01-16', true, true, 1);
+INSERT INTO `charity-donation`.status (id, delivery_date, is_delivered, is_picked_up, donation_id) VALUES (2, '2022-01-16', true, true, 2);
+INSERT INTO `charity-donation`.status (id, delivery_date, is_delivered, is_picked_up, donation_id) VALUES (3, '2022-01-16', true, true, 3);
+INSERT INTO `charity-donation`.status (id, delivery_date, is_delivered, is_picked_up, donation_id) VALUES (4, '2022-01-16', false, false, 4);
+INSERT INTO `charity-donation`.status (id, delivery_date, is_delivered, is_picked_up, donation_id) VALUES (5, '2022-01-16', false, true, 5);

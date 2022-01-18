@@ -23,7 +23,7 @@
                 </sec:authorize>
                 <ul class="dropdown">
                     <li><a href="/user/dashboard">Profil</a></li>
-                    <li><a href="/user/collection">Moje zbiórki</a></li>
+                    <li><a href="/user/dashboard#section2">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
             </li>

@@ -75,7 +75,7 @@
     <form:form method="post" modelAttribute="status" action="/status/update">
         <form:hidden path="id"/><form:hidden path="donation"/>
         <div class="form-group form-group--inline">Data dostarczenia: <form:input path="deliveryDate" type="date"/></div>
-        <div class="form-group form-group--50">Czy dostarczono?: <form:checkbox path="delivered" value="true" checked="" /></div>
+        <div class="form-group form-group--50">Czy dostarczono?: <form:checkbox path="delivered"/></div>
         <div class="form-group form-group--50">Czy odebrano?: <form:checkbox path="pickedUp"/></div>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class="form-group form-group--inline">

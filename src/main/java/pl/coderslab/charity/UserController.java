@@ -6,8 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.Category.CategoryRepository;
+import pl.coderslab.charity.Donation.Donation;
+import pl.coderslab.charity.Donation.DonationRepository;
 import pl.coderslab.charity.Institution.Institution;
 import pl.coderslab.charity.Institution.InstitutionRepository;
+import pl.coderslab.charity.Status.Status;
+import pl.coderslab.charity.Status.StatusRepository;
 import pl.coderslab.charity.User.CurrentUser;
 import pl.coderslab.charity.User.User;
 import pl.coderslab.charity.User.UserRepository;
@@ -22,11 +27,17 @@ public class UserController {
     private final InstitutionRepository institutionRepository;
     private final UserRepository userRepository;
     private final UserService userService;
+    private final DonationRepository donationRepository;
+    private final StatusRepository statusRepository;
+    private final CategoryRepository categoryRepository;
 
-    public UserController(InstitutionRepository institutionRepository, UserRepository userRepository, UserService userService) {
+    public UserController(InstitutionRepository institutionRepository, UserRepository userRepository, UserService userService, DonationRepository donationRepository, StatusRepository statusRepository, CategoryRepository categoryRepository) {
         this.institutionRepository = institutionRepository;
         this.userRepository = userRepository;
         this.userService = userService;
+        this.donationRepository = donationRepository;
+        this.statusRepository = statusRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @RequestMapping(value = "/institution/list")
@@ -73,5 +84,30 @@ public class UserController {
         userRepository.delete(currentUser.getUser());
         return "redirect:/user/dashboard";
     }
+    @RequestMapping(value = "/donation/{id}/update")
+    public String donationUpdateForm(@PathVariable Long id, Model model){
+        model.addAttribute("donation",donationRepository.getById(id));
+        model.addAttribute("categories",categoryRepository.findAll());
+        model.addAttribute("institutions", institutionRepository.findAll());
+        model.addAttribute("status", statusRepository.findStatusByDonation_Id(id));
+        return "donation";
+    }
+    @PostMapping(value = "/donation/update")
+    public String donationUpdateProcess(@Valid Donation donation, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()){
+            return "donation";
+        }
+        donationRepository.save(donation);
+        return "redirect:/user/dashboard";
+    }
+    @PostMapping(value = "/status/update")
+    public String donationUpdateProcess(@Valid Status status, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()){
+            return "donation";
+        }
+        statusRepository.save(status);
+        return "redirect:/user/dashboard";
+    }
+
 
 }

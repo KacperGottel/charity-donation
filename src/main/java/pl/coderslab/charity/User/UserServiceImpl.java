@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.charity.User.role.Role;
 import pl.coderslab.charity.User.role.RoleRepository;
 
+import java.util.UUID;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,7 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEnabled(true);
+        user.setEnabled(false);
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setRole(userRole);
         userRepository.save(user);
@@ -45,6 +47,8 @@ public class UserServiceImpl implements UserService {
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+
 
 
 }

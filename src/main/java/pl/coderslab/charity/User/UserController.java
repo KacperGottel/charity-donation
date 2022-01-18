@@ -1,22 +1,21 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.User;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.Category.CategoryRepository;
 import pl.coderslab.charity.Donation.Donation;
 import pl.coderslab.charity.Donation.DonationRepository;
 import pl.coderslab.charity.Institution.Institution;
 import pl.coderslab.charity.Institution.InstitutionRepository;
+import pl.coderslab.charity.Mail.EmailService;
 import pl.coderslab.charity.Status.Status;
 import pl.coderslab.charity.Status.StatusRepository;
-import pl.coderslab.charity.User.CurrentUser;
-import pl.coderslab.charity.User.User;
-import pl.coderslab.charity.User.UserRepository;
-import pl.coderslab.charity.User.UserService;
 
 import javax.validation.Valid;
 
@@ -30,14 +29,16 @@ public class UserController {
     private final DonationRepository donationRepository;
     private final StatusRepository statusRepository;
     private final CategoryRepository categoryRepository;
+    private final EmailService emailService;
 
-    public UserController(InstitutionRepository institutionRepository, UserRepository userRepository, UserService userService, DonationRepository donationRepository, StatusRepository statusRepository, CategoryRepository categoryRepository) {
+    public UserController(InstitutionRepository institutionRepository, UserRepository userRepository, UserService userService, DonationRepository donationRepository, StatusRepository statusRepository, CategoryRepository categoryRepository, EmailService emailService) {
         this.institutionRepository = institutionRepository;
         this.userRepository = userRepository;
         this.userService = userService;
         this.donationRepository = donationRepository;
         this.statusRepository = statusRepository;
         this.categoryRepository = categoryRepository;
+        this.emailService = emailService;
     }
 
     @RequestMapping(value = "/institution/list")

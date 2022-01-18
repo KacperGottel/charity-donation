@@ -8,6 +8,7 @@ import pl.coderslab.charity.User.role.Role;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,6 +29,7 @@ public class User {
     @Column(columnDefinition = "char(64)")
     private String username;
     @NotNull
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
     private String password;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
@@ -43,7 +45,6 @@ public class User {
         User user = (User) o;
         return id != null && Objects.equals(id, user.id);
     }
-
     @Override
     public int hashCode() {
         return getClass().hashCode();

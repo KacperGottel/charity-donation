@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -37,6 +38,7 @@ public class User {
     private boolean enabled;
     @OneToMany(fetch = FetchType.EAGER,mappedBy="user")
     private List<Donation> donations;
+    private String token;
 
     @Override
     public boolean equals(Object o) {

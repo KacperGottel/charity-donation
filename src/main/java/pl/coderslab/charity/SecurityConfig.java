@@ -26,10 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login", "/register").permitAll()
-                .antMatchers("/").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/login", "/register","/").permitAll()
+                .antMatchers("/institution/**").hasAnyRole("USER", "ADMIN")
                 .and()
-                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/")
+                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/user/dashboard")
                 .and().rememberMe().tokenValiditySeconds(36000).tokenRepository(persistentTokenRepository()).userDetailsService(this.customUserDetailsService())
                 .and()
                 .logout().deleteCookies("remember-me").logoutSuccessUrl("/");

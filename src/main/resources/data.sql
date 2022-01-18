@@ -9,11 +9,11 @@ INSERT INTO `charity-donation`.institution (id, description, name) VALUES (2, 'P
 INSERT INTO `charity-donation`.institution (id, description, name) VALUES (3, 'Pomoc wybudzaniu dzieci ze śpiączki.', 'A kogo');
 INSERT INTO `charity-donation`.institution (id, description, name) VALUES (4, 'Pomoc dla osób nie posiadających miejsca zamieszkania', 'Bez domu');
 
-INSERT INTO `charity-donation`.donation (id, city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id) VALUES (1, 'Jaworzno', 'be careful', '2022-01-15', '15:30', 5, 'Jatka', '123', 1);
-INSERT INTO `charity-donation`.donation (id, city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id) VALUES (2, 'Java', 'warning! glass', '2022-01-15', '15:30', 10, 'Japka', '456', 2);
-INSERT INTO `charity-donation`.donation (id, city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id) VALUES (3, 'Jakarta', 'cannot get wet', '2022-01-15', '15:30', 15, 'Jarka', '789', 3);
-INSERT INTO `charity-donation`.donation (id, city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id) VALUES (4, 'Juarez', 'thanks!', '2022-01-15', '15:30:18', 20, 'Janka', '777', 4);
-INSERT INTO `charity-donation`.donation (id, city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id) VALUES (5, 'dsfgsdf', 'sfgsdfg', '2022-01-11', '12:20:00', 2, 'dfgfdg', '7', 3);
+INSERT INTO `charity-donation`.donation (id, city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id, user_id) VALUES (1, 'Jaworzno', 'be careful', '2022-01-15', '15:30', 5, 'Jatka', '123', 1, 1);
+INSERT INTO `charity-donation`.donation (id, city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id, user_id) VALUES (2, 'Java', 'warning! glass', '2022-01-15', '15:30', 10, 'Japka', '456', 2, 2);
+INSERT INTO `charity-donation`.donation (id, city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id, user_id) VALUES (3, 'Jakarta', 'cannot get wet', '2022-01-15', '15:30', 15, 'Jarka', '789', 3, 1);
+INSERT INTO `charity-donation`.donation (id, city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id, user_id) VALUES (4, 'Juarez', 'thanks!', '2022-01-15', '15:30:18', 20, 'Janka', '777', 4, 2);
+INSERT INTO `charity-donation`.donation (id, city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id, user_id) VALUES (5, 'dsfgsdf', 'sfgsdfg', '2022-01-11', '12:20:00', 2, 'dfgfdg', '7', 3, 1);
 
 INSERT INTO `charity-donation`.donation_categories (donation_id, categories_id) VALUES (5, 5);
 INSERT INTO `charity-donation`.donation_categories (donation_id, categories_id) VALUES (4, 4);
@@ -35,3 +35,8 @@ create table persistent_logins
     last_used timestamp   not null
 );
 
+INSERT INTO `charity-donation`.status (id, delivery_date, is_delivered, is_picked_up, donation_id) VALUES (1, '2022-01-16', true, true, 1);
+INSERT INTO `charity-donation`.status (id, delivery_date, is_delivered, is_picked_up, donation_id) VALUES (2, '2022-01-16', true, true, 2);
+INSERT INTO `charity-donation`.status (id, delivery_date, is_delivered, is_picked_up, donation_id) VALUES (3, '2022-01-16', true, true, 3);
+INSERT INTO `charity-donation`.status (id, delivery_date, is_delivered, is_picked_up, donation_id) VALUES (4, '2022-01-16', false, false, 4);
+INSERT INTO `charity-donation`.status (id, delivery_date, is_delivered, is_picked_up, donation_id) VALUES (5, '2022-01-16', false, true, 5);

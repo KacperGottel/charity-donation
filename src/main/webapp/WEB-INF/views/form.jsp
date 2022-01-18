@@ -5,10 +5,72 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<%@ include file="/resources/fragment/header.jsp" %>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="/resources/css/style.css"/>
+</head>
+<body>
+<header class="header--form-page">
+    <nav class="container container--70">
+        <ul class="nav--actions">
+            <li class="logged-user">
+                <sec:authorize access="isAuthenticated()">
+                    Hi! <sec:authentication property="principal.username"/>
+                </sec:authorize>
+                <ul class="dropdown">
+                    <li><a href="/user/dashboard">Profil</a></li>
+                    <li><a href="/user/dashboard#section2">Moje zbiórki</a></li>
+                    <li><a href="/logout">Wyloguj</a></li>
+                </ul>
+            </li>
+        </ul>
 
-<section class="form--steps">
+        <ul>
+            <li><a href="/" class="btn btn--without-border active">Start</a></li>
+            <li><a href="/#steps" class="btn btn--without-border">O co chodzi?</a></li>
+            <li><a href="/#about-us" class="btn btn--without-border">O nas</a></li>
+            <li><a href="/#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
+            <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
+        </ul>
+    </nav>
+    <div class="slogan container container--90">
+        <a href="#stepsy">
+            <div class="slogan--item">
+                <h1>
+                    Oddaj rzeczy, których już nie chcesz<br/>
+                    <span class="uppercase">potrzebującym</span>
+                </h1>
+
+                <div class="slogan--steps">
+                    <div class="slogan--steps-title">Wystarczą 4 proste kroki:</div>
+                    <ul class="slogan--steps-boxes">
+                        <li>
+                            <div><em>1</em><span>Wybierz rzeczy</span></div>
+                        </li>
+                        <li>
+                            <div><em>2</em><span>Spakuj je w worki</span></div>
+                        </li>
+                        <li>
+                            <div><em>3</em><span>Wybierz fundację</span></div>
+                        </li>
+                        <li>
+                            <div><em>4</em><span>Zamów kuriera</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+    </div>
+</header>
+
+<section class="form--steps" id="stepsy">
     <div class="form--steps-instructions">
         <div class="form--steps-container">
             <h3>Ważne!</h3>
@@ -179,7 +241,7 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru:</h4>
                         <ul>
-                            <li  id="streetLI">Prosta 51</li>
+                            <li id="streetLI">Prosta 51</li>
                             <li id="cityLI">Warszawa</li>
                             <li id="zipCodetLI">99-098</li>
                         </ul>

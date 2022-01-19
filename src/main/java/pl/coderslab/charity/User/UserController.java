@@ -87,12 +87,22 @@ public class UserController {
     }
     @RequestMapping(value = "/donation/{id}/update")
     public String donationUpdateForm(@PathVariable Long id, Model model){
+        Status status = statusRepository.findStatusByDonation_Id(id);
+        if(status != null)
+        {
         model.addAttribute("donation",donationRepository.getById(id));
         model.addAttribute("categories",categoryRepository.findAll());
         model.addAttribute("institutions", institutionRepository.findAll());
-        model.addAttribute("status", statusRepository.findStatusByDonation_Id(id));
+        model.addAttribute("status", status);
+        return "donation";
+        }
+        model.addAttribute("donation",donationRepository.getById(id));
+        model.addAttribute("categories",categoryRepository.findAll());
+        model.addAttribute("institutions", institutionRepository.findAll());
+        model.addAttribute("infoStatus", "Status nie jest zaktualizowany");
         return "donation";
     }
+
     @PostMapping(value = "/donation/update")
     public String donationUpdateProcess(@Valid Donation donation, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){

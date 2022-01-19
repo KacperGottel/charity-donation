@@ -7,14 +7,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import pl.coderslab.charity.User.SpringDataUserDetailsService;
 
@@ -32,12 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/login", "/register","/").permitAll()
-                .antMatchers("/institution/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/institution","/user","/contact","/donation").hasAnyRole("USER", "ADMIN")
                 .and()
                 .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/user/dashboard")
                 .and().rememberMe().tokenValiditySeconds(36000).tokenRepository(persistentTokenRepository()).userDetailsService(this.customUserDetailsService())
                 .and()
-                .logout().deleteCookies("remember-me").logoutSuccessUrl("/");
+                .logout().logoutSuccessUrl("/").deleteCookies("remember-me");
 
     }
     @Bean

@@ -41,7 +41,6 @@ public class DonationController {
     @PostMapping(value = "/form")
     public String donationProcess(@Valid Donation donation, BindingResult bindingResult, Model model, @AuthenticationPrincipal CurrentUser currentUser) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("donation", new Donation());
             model.addAttribute("errors", bindingResult.getModel());
             model.addAttribute("categoriesList", categoryRepository.findAll());
             model.addAttribute("institutionsList", institutionRepository.findAll());

@@ -126,4 +126,9 @@ public class HomeController {
         }
         return "redirect:/";
     }
+    @RequestMapping("/logout")
+    public String logoutSuccessUrl(){
+        return "redirect:/";
+
+    }
 }

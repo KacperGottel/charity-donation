@@ -72,7 +72,12 @@
         </h2>
     </div>
     <h2>
-    <form:form method="post" modelAttribute="status" action="/status/update">
+        <c:choose>
+        <c:when test="${not empty infoStatus}">
+            ${infoStatus}
+        </c:when>
+            <c:otherwise>
+            <form:form method="post" modelAttribute="status" action="/status/update">
         <form:hidden path="id"/><form:hidden path="donation"/>
         <div class="form-group form-group--inline">Data dostarczenia: <form:input path="deliveryDate" type="date"/></div>
         <div class="form-group form-group--50">Czy dostarczono?: <form:checkbox path="delivered"/></div>
@@ -82,6 +87,8 @@
             <button class="btn" type="submit">Aktualizuj</button>
         </div>
     </form:form>
+            </c:otherwise>
+        </c:choose>
     </h2>
 </section>
 

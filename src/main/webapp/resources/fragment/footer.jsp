@@ -6,14 +6,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <footer>
     <div class="contact" id="contact">
-        <h2>Skontaktuj się z nami</h2>
+        <h2>
+            <c:if test="${empty info}">
+            Skontaktuj się z nami
+        </c:if>
+            <c:if test="${not empty info}">
+                ${info}
+            </c:if>
+            </h2>
         <h3>Formularz kontaktowy</h3>
-        <form class="form--contact">
+        <form class="form--contact" method="post" action="/contact">
             <div class="form-group form-group--50"><input type="text" name="name" placeholder="Imię"/></div>
             <div class="form-group form-group--50"><input type="text" name="surname" placeholder="Nazwisko"/></div>
 
-            <div class="form-group"><textarea name="message" placeholder="Wiadomość" rows="1"></textarea></div>
-
+            <div class="form-group"><input type="textarea" name="message" placeholder="Wiadomość" rows="1"/></div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <button class="btn" type="submit">Wyślij</button>
         </form>
     </div>

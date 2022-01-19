@@ -3,14 +3,17 @@ package pl.coderslab.charity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.buf.HexUtils;
 import org.hibernate.type.UUIDBinaryType;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.coderslab.charity.Donation.Donation;
 import pl.coderslab.charity.Donation.DonationRepository;
 import pl.coderslab.charity.Institution.InstitutionRepository;
 import pl.coderslab.charity.Mail.EmailService;
+import pl.coderslab.charity.User.CurrentUser;
 import pl.coderslab.charity.User.User;
 import pl.coderslab.charity.User.UserRepository;
 import pl.coderslab.charity.User.UserService;
@@ -97,5 +100,30 @@ public class HomeController {
             return "redirect:/login";
         }
         return "redirect:/login";
+    }
+    @GetMapping("/international")
+    public String getInternationalPage() {
+        return "redirect:/";
+    }
+
+    @PostMapping(value = "/contact")
+    public String contactProcess(RedirectAttributes redirectAttrs, @AuthenticationPrincipal CurrentUser currentUser, @RequestParam("name") String name, @RequestParam("surname") String surname, @RequestParam("message") String message){
+        emailService.sendSimpleMessage(currentUser.getUser().getEmail(),name + "," + surname,message);
+        redirectAttrs.addFlashAttribute("info", "Wiadomość została wysłana");
+        return "redirect:/";
+    }
+    @GetMapping(value = "/remind")
+    public String remindForm(){
+        return "remind";
+    }
+    @PostMapping(value = "/remind")
+    public String remindProcess(RedirectAttributes redirectAttrs, @RequestParam("email") String email){
+        User user = userRepository.findFirstUserByEmail(email);
+        if (user != null){
+            emailService.sendSimpleMessage(email,"Password Reminder", user.getPassword());
+        } else {
+            emailService.sendSimpleMessage(email,"Password Reminder", "User is not exist");
+        }
+        return "redirect:/";
     }
 }

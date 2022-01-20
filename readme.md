@@ -23,7 +23,7 @@ views: JSP/JSTL HTML JavaScript CSS<br>
 <h3>Usage</h3>
 Get in Home page and select language. Read about donations, see Institutions list. Register, confirm in mail, login with Remember me token and cookie. Add, update or remove Institution. Give a donation, select, check and put in information. Read user donation list, update, remove. Send contact form, change user personals.
 
-<h3>🎞️</h3>
+<h3>🎞️ https://youtu.be/buQINWk38rk </h3>
 
 
 <br><br><br>

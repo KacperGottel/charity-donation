@@ -23,10 +23,10 @@ views: JSP/JSTL HTML JavaScript CSS<br>
 <h3>Usage</h3>
 Get in Home page and select language. Read about donations, see Institutions list. Register, confirm in mail, login with Remember me token and cookie. Add, update or remove Institution. Give a donation, select, check and put in information. Read user donation list, update, remove. Send contact form, change user personals.
 
-<h3>🎞️</h3>
+<h3>Watch on Youtube</h3>
 
 <a href="https://www.youtube.com/embed/buQINWk38rk" target="_blank">
- <img src="https://user-images.githubusercontent.com/90089220/150331973-bf5e92ba-eb64-4607-b949-fda0930d1438.png" alt="Watch the video" width="240" height="180" border="10" />
+ <img src="https://user-images.githubusercontent.com/90089220/150331973-bf5e92ba-eb64-4607-b949-fda0930d1438.png" alt="Watch the video" width="680" height="360" border="10" />
 </a>
 
 

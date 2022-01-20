@@ -41,12 +41,12 @@
     <div class="container container--85">
         <h2>
             <a href="#form">Formularz dodawania Fundacji</a><br><br>
-            <a href="/institution/list" class="btn btn--highlighted">Wróć</a>
+            <a href="/institution/list" class="btn btn--highlighted">Wróć</a><br><br><br><br><br><br><br><br><br><br>
         <div class="contact" id="contact">
             <form:form class="form--contact" modelAttribute="institution" method="post">
                 <form:hidden path="id"/>
-                <div class="form-group form-group--inline"><form:input path="name" type="text"  placeholder="Nazwa Fundacji"/></div>
-                <div class="form-group form-group--inline"><form:input path="description" type="textarea"  placeholder="Opis"/></div>
+                <div class="form-group form-group--50"><form:input path="name" type="text"  placeholder="Nazwa Fundacji"/></div>
+                <div class="form-group form-group--50"><form:input path="description" type="textarea"  placeholder="Opis"/></div>
                 <button class="btn" type="submit">Wyślij</button>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form:form>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.coderslab.charity.Donation.Donation;
 import pl.coderslab.charity.Donation.DonationRepository;
+import pl.coderslab.charity.Institution.Institution;
 import pl.coderslab.charity.Institution.InstitutionRepository;
 import pl.coderslab.charity.Mail.EmailService;
 import pl.coderslab.charity.User.CurrentUser;
@@ -131,4 +132,6 @@ public class HomeController {
         return "redirect:/";
 
     }
+
+
 }

@@ -109,7 +109,7 @@
         <wbr>
         <h1>
             <div style="text-align: center">
-                <a href="user/delete" class="btn btn--without-border" style="background-color: red"><span
+                <a href="/user/delete" class="btn btn--without-border" style="background-color: red"><span
                         style="color: white">Usuń konto</span></a>
             </div>
         </h1><br>

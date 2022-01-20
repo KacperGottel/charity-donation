@@ -29,12 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/login", "/register","/").permitAll()
-                .antMatchers("/institution","/user","/contact","/donation").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/form","/institution","/institution/**","/user/**","/contact","/donation/**").hasAnyRole("USER", "ADMIN")
                 .and()
                 .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/user/dashboard")
                 .and().rememberMe().tokenValiditySeconds(36000).tokenRepository(persistentTokenRepository()).userDetailsService(this.customUserDetailsService())
                 .and()
-                .logout().logoutSuccessUrl("/").deleteCookies("remember-me");
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/").deleteCookies("remember-me");
 
     }
     @Bean

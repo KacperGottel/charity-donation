@@ -50,13 +50,13 @@ public class UserController {
     @RequestMapping(value = "/institution/add")
     public String addInstitution(Model model) {
         model.addAttribute("institution", new Institution());
-        return "institutionADD";
+        return "institution-add";
     }
 
     @PostMapping(value = "/institution/add")
     public String addInstitution(@Valid Institution institution, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "institutionADD";
+            return "institution-add";
         }
         institutionRepository.save(institution);
     return "redirect:/institution/list";
@@ -68,8 +68,11 @@ public class UserController {
     }
     @RequestMapping(value = "/user/dashboard")
     public String userForm(@AuthenticationPrincipal CurrentUser currentUser, Model model){
+        if (currentUser != null){
         model.addAttribute("userlogged",userRepository.getById(currentUser.getUser().getId()));
         return "user";
+        }
+        return "redirect:/";
     }
     @PostMapping(value = "/user/dashboard")
     public String userFormProcess(@Valid User user, BindingResult bindingResult, Model model, @AuthenticationPrincipal CurrentUser currentUser){
@@ -83,7 +86,7 @@ public class UserController {
     @RequestMapping(value = "user/delete")
     public String deleteUser(@AuthenticationPrincipal CurrentUser currentUser){
         userRepository.delete(currentUser.getUser());
-        return "redirect:/user/dashboard";
+        return "redirect:/";
     }
     @RequestMapping(value = "/donation/{id}/update")
     public String donationUpdateForm(@PathVariable Long id, Model model){
@@ -119,6 +122,18 @@ public class UserController {
         statusRepository.save(status);
         return "redirect:/user/dashboard";
     }
-
+    @RequestMapping(value = "/institution/{id}/update")
+    public String updateInstitution(Model model, @PathVariable Long id){
+        model.addAttribute("institution",institutionRepository.getById(id));
+        return "institution-update";
+    }
+    @PostMapping("/institution/update")
+    public String updateInstitututionProcess(@Valid Institution institution, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            return "institution-update";
+        }
+        institutionRepository.save(institution);
+        return "redirect:/institution/list";
+    }
 
 }

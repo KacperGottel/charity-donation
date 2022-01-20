@@ -21,7 +21,7 @@ INSERT INTO `charity-donation`.institution (id, description, name) VALUES (4, 'P
 INSERT INTO `charity-donation`.role (id, name) VALUES (1, 'ROLE_USER');
 INSERT INTO `charity-donation`.role (id, name) VALUES (2, 'ROLE_ADMIN');
 
-INSERT INTO `charity-donation`.user (id, username, email, password, enabled, role_id) VALUES (1, 'user', 'springbootkacper@gmail.com', '$2a$12$rVS3Ri0CasOvpnk1UBrKR.caYHqLZ3drQdH4./oy4YAb6/A7J3MYS', true, 1);
+INSERT INTO `charity-donation`.user (id, username, email, password, enabled, role_id) VALUES (1, 'user', 'user@user.pl', '$2a$12$rVS3Ri0CasOvpnk1UBrKR.caYHqLZ3drQdH4./oy4YAb6/A7J3MYS', true, 1);
 
 
 INSERT INTO `charity-donation`.donation (id, city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code, institution_id, user_id) VALUES (1, 'Jaworzno', 'be careful', '2022-01-15', '15:30', 5, 'Jatka', '123', 1, 1);
